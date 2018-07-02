@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HTMLSpecialCharacters
+import HTMLEntitiesCharacters
 
 #if os(iOS) || os(tvOS)
     import UIKit
@@ -544,23 +544,23 @@ public struct Subreddit: SubredditURLPath, Thing, Created {
         bannerImg = data["banner_img"] as? String ?? ""
         userSrThemeEnabled = data["user_sr_theme_enabled"] as? Bool ?? false
         let tempSubmitTextHtml = data["submit_text_html"] as? String ?? ""
-        submitTextHtml = tempSubmitTextHtml.unescapeHTML
+        submitTextHtml = tempSubmitTextHtml.htmlUnescape()
         userIsBanned = data["user_is_banned"] as? Bool ?? false
         submitText = data["submit_text"] as? String ?? ""
         displayName = data["display_name"] as? String ?? ""
         headerImg = data["header_img"] as? String ?? ""
         let tempDescriptionHtml = data["description_html"] as? String ?? ""
-        descriptionHtml = tempDescriptionHtml.unescapeHTML
+        descriptionHtml = tempDescriptionHtml.htmlUnescape()
         title = data["title"] as? String ?? ""
         collapseDeletedComments = data["collapse_deleted_comments"] as? Bool ?? false
         over18 = data["over18"] as? Bool ?? false
         let tempPublicDescriptionHtml = data["public_description_html"] as? String ?? ""
-        publicDescriptionHtml = tempPublicDescriptionHtml.unescapeHTML
+        publicDescriptionHtml = tempPublicDescriptionHtml.htmlUnescape()
         iconSize = data["icon_size"] as? [Int] ?? []
         iconImg = data["icon_img"] as? String ?? ""
         headerTitle = data["header_title"] as? String ?? ""
         let tempDescription = data["description"] as? String ?? ""
-        description = tempDescription.unescapeHTML
+        description = tempDescription.htmlUnescape()
         submitLinkLabel = data["submit_link_label"] as? String ?? ""
         accountsActive = data["accounts_active"] as? Int ?? 0
         publicTraffic = data["public_traffic"] as? Bool ?? false
@@ -576,7 +576,7 @@ public struct Subreddit: SubredditURLPath, Thing, Created {
         bannerSize = data["banner_size"] as? [Int] ?? []
         userIsContributor = data["user_is_contributor"] as? Bool ?? false
         let tempPublicDescription = data["public_description"] as? String ?? ""
-        publicDescription = tempPublicDescription.unescapeHTML
+        publicDescription = tempPublicDescription.htmlUnescape()
         commentScoreHideMins = data["comment_score_hide_mins"] as? Int ?? 0
         subredditType = data["subreddit_type"] as? String ?? ""
         submissionType = data["submission_type"] as? String ?? ""

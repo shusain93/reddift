@@ -26,6 +26,6 @@ Pod::Spec.new do |s|
   s.source_files = [
     'framework/*/*.swift'
   ]
-  s.dependency 'HTMLSpecialCharacters'
+  s.dependency 'HTMLEntities', :git => 'https://github.com/IBM-Swift/swift-html-entities.git'
   s.dependency 'MiniKeychain'
 end

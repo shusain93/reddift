@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HTMLSpecialCharacters
+import HTMLEntitiesCharacters
 
 /**
 Message object.
@@ -141,7 +141,7 @@ public struct Message: Thing, Created {
         author = data["author"] as? String ?? ""
         createdUtc = data["created_utc"] as? Int ?? 0
         let tempBodyHtml = data["body_html"] as? String ?? ""
-        bodyHtml = tempBodyHtml.unescapeHTML
+        bodyHtml = tempBodyHtml.htmlUnescape()
         subreddit = data["subreddit"] as? String ?? ""
         parentId = data["parent_id"] as? String ?? ""
         context = data["context"] as? String ?? ""

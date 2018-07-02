@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HTMLSpecialCharacters
+import HTMLEntitiesCharacters
 
 /**
 Media represents the content which is embeded a link.
@@ -31,7 +31,7 @@ public struct MediaEmbed {
 		height = json["height"] as? Int ?? 0
         width = json["width"] as? Int ?? 0
 		let tempContent = json["content"] as? String ?? ""
-        content = tempContent.unescapeHTML
+        content = tempContent.htmlUnescape()
 		scrolling = json["scrolling"] as? Bool ?? false
     }
     

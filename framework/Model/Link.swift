@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HTMLSpecialCharacters
+import HTMLEntities
 
 /**
 Returns string by replacing NOT ASCII characters with a percent escaped string using UTF8.
@@ -311,9 +311,9 @@ public struct Link: Thing, Created, Votable {
         bannedBy = data["banned_by"] as? String ?? ""
         subreddit = data["subreddit"] as? String ?? ""
         let tempSelftextHtml = data["selftext_html"] as? String ?? ""
-        selftextHtml = tempSelftextHtml.unescapeHTML
+        selftextHtml = tempSelftextHtml.htmlUnescape()
         let tempSelftext = data["selftext"] as? String ?? ""
-        selftext = tempSelftext.unescapeHTML
+        selftext = tempSelftext.htmlUnescape()
         if let temp = data["likes"] as? Bool {
             likes = temp ? .up : .down
         } else {
@@ -338,17 +338,17 @@ public struct Link: Thing, Created, Votable {
         saved = data["saved"] as? Bool ?? false
         isSelf = data["is_self"] as? Bool ?? false
         let tempName = data["name"] as? String ?? ""
-        name = tempName.unescapeHTML
+        name = tempName.htmlUnescape()
         permalink = data["permalink"] as? String ?? ""
         stickied = data["stickied"] as? Bool ?? false
         created = data["created"] as? Int ?? 0
         
         let tempUrl = data["url"] as? String ?? ""
-        url = tempUrl.unescapeHTML
+        url = tempUrl.htmlUnescape()
         
         authorFlairText = data["author_flair_text"] as? String ?? ""
         let tempTitle = data["title"] as? String ?? ""
-        title = tempTitle.unescapeHTML
+        title = tempTitle.htmlUnescape()
         createdUtc = data["created_utc"] as? Int ?? 0
         ups = data["ups"] as? Int ?? 0
         upvoteRatio = data["upvote_ratio"] as? Double ?? 0

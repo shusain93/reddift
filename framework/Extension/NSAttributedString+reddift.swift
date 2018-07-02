@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HTMLSpecialCharacters
+import HTMLEntitiesCharacters
 
 /// import to use NSFont/UIFont
 #if os(iOS) || os(tvOS)

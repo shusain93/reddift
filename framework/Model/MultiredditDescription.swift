@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HTMLSpecialCharacters
+import HTMLEntitiesCharacters
 
 /**
 Multireddit description class.
@@ -18,7 +18,7 @@ public struct MultiredditDescription {
     
     public init(json: JSONDictionary) {
         let tempBodyHtml = json["body_html"] as? String ?? ""
-        bodyHtml = tempBodyHtml.unescapeHTML
+        bodyHtml = tempBodyHtml.htmlUnescape()
         bodyMd = json["body_md"] as? String ?? ""
     }
 }

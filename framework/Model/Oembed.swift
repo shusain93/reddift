@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HTMLSpecialCharacters
+import HTMLEntitiesCharacters
 
 /**
 Media represents the content which is embeded a link.
@@ -74,7 +74,7 @@ public struct Oembed {
 		self.height = json["height"] as? Int ?? 0
 		self.width = json["width"] as? Int ?? 0
         let tempHtml = json["html"] as? String ?? ""
-        self.html = tempHtml.unescapeHTML
+        self.html = tempHtml.htmlUnescape()
 		self.version = json["version"] as? String ?? ""
 		self.providerName = json["provider_name"] as? String ?? ""
 		self.thumbnailUrl = json["thumbnail_url"] as? String ?? ""

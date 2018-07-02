@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HTMLSpecialCharacters
+import HTMLEntities
 
 /**
  Expand child comments which are included in Comment objects, recursively.
@@ -311,7 +311,7 @@ public struct Comment: Thing, Created, Votable {
         authorFlairCssClass = data["author_flair_css_class"] as? String ?? ""
         downs = data["downs"] as? Int ?? 0
         let tempBodyHtml = data["body_html"] as? String ?? ""
-        bodyHtml = tempBodyHtml.unescapeHTML
+        bodyHtml = tempBodyHtml.htmlUnescape()
         subreddit = data["subreddit"] as? String ?? ""
         scoreHidden = data["score_hidden"] as? Bool ?? false
         name = data["name"] as? String ?? ""
