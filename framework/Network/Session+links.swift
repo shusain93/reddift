@@ -286,4 +286,23 @@ extension Session {
         }
         return executeTask(request, handleResponse: closure, completion: completion)
     }
+    
+    /// Mark a link visited. Only can be used by users with gold, otherwise 403
+	///
+	/// - Parameters:
+	///   - link: Link to mark
+	///   - completion: Callback
+	/// - Returns: The task
+	/// - Throws: If the data request cannot be synthesized, this method will throw
+    @discardableResult
+	public func storeVisits(link:Link,completion: @escaping (Result<JSONAny>) -> Void) throws -> URLSessionDataTask {
+		var parameter = [
+			"links": link.name,
+			"api_type": "json"
+		]
+		guard let request = URLRequest.requestForOAuth(with: baseURL, path:"/api/store_visits", parameter:parameter, method:"POST", token:token)
+			else { throw ReddiftError.canNotCreateURLRequest as NSError }
+
+		return executeTask(request, handleResponse: handleResponse2JSON, completion: completion)
+	}
 }
