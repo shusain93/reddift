@@ -84,7 +84,7 @@ public struct Link: Thing, Created, Votable {
     /**
     example:
     */
-    public let secureMedia: AnyObject?
+    public let secureMedia: RedditVideo?
     /**
     the text of the link's flair.
     example:
@@ -311,9 +311,9 @@ public struct Link: Thing, Created, Votable {
         bannedBy = data["banned_by"] as? String ?? ""
         subreddit = data["subreddit"] as? String ?? ""
         let tempSelftextHtml = data["selftext_html"] as? String ?? ""
-        selftextHtml = tempSelftextHtml.htmlUnescape()
+        selftextHtml = tempSelftextHtml.unescapeHTML
         let tempSelftext = data["selftext"] as? String ?? ""
-        selftext = tempSelftext.htmlUnescape()
+        selftext = tempSelftext.unescapeHTML
         if let temp = data["likes"] as? Bool {
             likes = temp ? .up : .down
         } else {
@@ -338,17 +338,17 @@ public struct Link: Thing, Created, Votable {
         saved = data["saved"] as? Bool ?? false
         isSelf = data["is_self"] as? Bool ?? false
         let tempName = data["name"] as? String ?? ""
-        name = tempName.htmlUnescape()
+        name = tempName.unescapeHTML
         permalink = data["permalink"] as? String ?? ""
         stickied = data["stickied"] as? Bool ?? false
         created = data["created"] as? Int ?? 0
         
         let tempUrl = data["url"] as? String ?? ""
-        url = tempUrl.htmlUnescape()
+        url = tempUrl.unescapeHTML
         
         authorFlairText = data["author_flair_text"] as? String ?? ""
         let tempTitle = data["title"] as? String ?? ""
-        title = tempTitle.htmlUnescape()
+        title = tempTitle.unescapeHTML
         createdUtc = data["created_utc"] as? Int ?? 0
         ups = data["ups"] as? Int ?? 0
         upvoteRatio = data["upvote_ratio"] as? Double ?? 0
@@ -370,7 +370,19 @@ public struct Link: Thing, Created, Votable {
         mediaEmbed = MediaEmbed(json: data["media_embed"] as? JSONDictionary ?? [:])
         
         userReports = []
-        secureMedia = nil
+
+        //Try and extract the reddit sanctioned media 
+        if let secure_media_reddit = data["secure_media"] as? JSONDictionary, let reddit_video = secure_media_reddit["reddit_video"] as? JSONDictionary {
+            secureMedia = RedditVideo.init(json: reddit_video)
+        }else {
+            //Try and get the recursive link (used for x-posting
+            if let cross_post_data = data["crosspost_parent_list"] as? JSONArray, let linkCrossData = cross_post_data.first as? JSONDictionary {
+                let childLink = Link.init(json: linkCrossData)
+                secureMedia = childLink.secureMedia
+            }else {
+                secureMedia = nil
+            }
+        }
         reportReasons = []
         modReports = []
         secureMediaEmbed = nil

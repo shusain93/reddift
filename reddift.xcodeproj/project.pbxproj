@@ -600,6 +600,12 @@
 		14FD7DF61E3C944500F4A7F9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FD7DD71E3C944500F4A7F9 /* WebViewController.swift */; };
 		14FD7E0F1E3C97BE00F4A7F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FD7E0D1E3C97BE00F4A7F9 /* LaunchScreen.xib */; };
 		14FD7E121E3C97CF00F4A7F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14FD7E101E3C97CF00F4A7F9 /* Main.storyboard */; };
+		221139F620F1FADF00897812 /* RedditVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221139F520F1FADF00897812 /* RedditVideo.swift */; };
+		221139F720F1FADF00897812 /* RedditVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221139F520F1FADF00897812 /* RedditVideo.swift */; };
+		221139F820F1FADF00897812 /* RedditVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221139F520F1FADF00897812 /* RedditVideo.swift */; };
+		221139F920F1FADF00897812 /* RedditVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221139F520F1FADF00897812 /* RedditVideo.swift */; };
+		221139FA20F1FADF00897812 /* RedditVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221139F520F1FADF00897812 /* RedditVideo.swift */; };
+		221139FB20F1FADF00897812 /* RedditVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221139F520F1FADF00897812 /* RedditVideo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -857,6 +863,7 @@
 		14FD7E0E1E3C97BE00F4A7F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		14FD7E111E3C97CF00F4A7F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14FD7E131E3C981F00F4A7F9 /* application.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = application.entitlements; sourceTree = "<group>"; };
+		221139F520F1FADF00897812 /* RedditVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RedditVideo.swift; path = framework/Model/RedditVideo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1032,6 +1039,7 @@
 				144B573B1E3C7D5E00C88DB9 /* Created.swift */,
 				144B573C1E3C7D5E00C88DB9 /* Enum.swift */,
 				144B573D1E3C7D5E00C88DB9 /* Link.swift */,
+				221139F520F1FADF00897812 /* RedditVideo.swift */,
 				144B573E1E3C7D5E00C88DB9 /* Listing.swift */,
 				144B573F1E3C7D5E00C88DB9 /* Media.swift */,
 				144B57401E3C7D5E00C88DB9 /* MediaEmbed.swift */,
@@ -2029,6 +2037,7 @@
 				144B57B71E3C7D5E00C88DB9 /* Response.swift in Sources */,
 				144B57FB1E3C7D6A00C88DB9 /* NSBundle+reddift.swift in Sources */,
 				144B56FD1E3C7D5200C88DB9 /* Session+liveThreads.swift in Sources */,
+				221139F820F1FADF00897812 /* RedditVideo.swift in Sources */,
 				144B56E51E3C7D5200C88DB9 /* Session+gold.swift in Sources */,
 				144B56781E3C7D3700C88DB9 /* helper.swift in Sources */,
 				144B57991E3C7D5E00C88DB9 /* Multireddit.swift in Sources */,
@@ -2118,6 +2127,7 @@
 				144B57641E3C7D5E00C88DB9 /* Config.swift in Sources */,
 				144B57A01E3C7D5E00C88DB9 /* MultiredditDescription.swift in Sources */,
 				144B56CE1E3C7D5100C88DB9 /* Session.swift in Sources */,
+				221139F920F1FADF00897812 /* RedditVideo.swift in Sources */,
 				144B56A81E3C7D4900C88DB9 /* Token.swift in Sources */,
 				144B57D61E3C7D5E00C88DB9 /* User.swift in Sources */,
 				144B58081E3C7D6A00C88DB9 /* NSURLComponents+reddift.swift in Sources */,
@@ -2253,6 +2263,7 @@
 				144B57B51E3C7D5E00C88DB9 /* Response.swift in Sources */,
 				144B57F91E3C7D6A00C88DB9 /* NSBundle+reddift.swift in Sources */,
 				144B56FB1E3C7D5200C88DB9 /* Session+liveThreads.swift in Sources */,
+				221139F620F1FADF00897812 /* RedditVideo.swift in Sources */,
 				144B56E31E3C7D5200C88DB9 /* Session+gold.swift in Sources */,
 				144B56761E3C7D3700C88DB9 /* helper.swift in Sources */,
 				144B57971E3C7D5E00C88DB9 /* Multireddit.swift in Sources */,
@@ -2342,6 +2353,7 @@
 				144B57621E3C7D5E00C88DB9 /* Config.swift in Sources */,
 				144B579E1E3C7D5E00C88DB9 /* MultiredditDescription.swift in Sources */,
 				144B56CC1E3C7D5100C88DB9 /* Session.swift in Sources */,
+				221139F720F1FADF00897812 /* RedditVideo.swift in Sources */,
 				144B56A61E3C7D4900C88DB9 /* Token.swift in Sources */,
 				144B57D41E3C7D5E00C88DB9 /* User.swift in Sources */,
 				144B58061E3C7D6A00C88DB9 /* NSURLComponents+reddift.swift in Sources */,
@@ -2403,6 +2415,7 @@
 				144B57B91E3C7D5E00C88DB9 /* Response.swift in Sources */,
 				144B57FD1E3C7D6A00C88DB9 /* NSBundle+reddift.swift in Sources */,
 				144B56FF1E3C7D5200C88DB9 /* Session+liveThreads.swift in Sources */,
+				221139FA20F1FADF00897812 /* RedditVideo.swift in Sources */,
 				144B56E71E3C7D5200C88DB9 /* Session+gold.swift in Sources */,
 				144B567A1E3C7D3700C88DB9 /* helper.swift in Sources */,
 				144B579B1E3C7D5E00C88DB9 /* Multireddit.swift in Sources */,
@@ -2492,6 +2505,7 @@
 				144B57661E3C7D5E00C88DB9 /* Config.swift in Sources */,
 				144B57A21E3C7D5E00C88DB9 /* MultiredditDescription.swift in Sources */,
 				144B56D01E3C7D5100C88DB9 /* Session.swift in Sources */,
+				221139FB20F1FADF00897812 /* RedditVideo.swift in Sources */,
 				144B56AA1E3C7D4900C88DB9 /* Token.swift in Sources */,
 				144B57D81E3C7D5E00C88DB9 /* User.swift in Sources */,
 				144B580A1E3C7D6A00C88DB9 /* NSURLComponents+reddift.swift in Sources */,
