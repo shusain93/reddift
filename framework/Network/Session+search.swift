@@ -24,9 +24,9 @@ extension Session {
     public func getSearch(_ subreddit: Subreddit?, query: String, paginator: Paginator, sort: SearchSortBy, completion: @escaping (Result<Listing>) -> Void) throws -> URLSessionDataTask {
         //auto restrict to the subreddit if it is provided
         let parameter = paginator.dictionaryByAdding(parameters: ["q": query, "sort": sort.path,"restrict_sr":(subreddit != nil ? "true" : "false")])
-        var path = "/search"
+        var path = "/search.json"
         if let subreddit = subreddit {
-            path = "r/\(subreddit.displayName)/search"
+            path = "r/\(subreddit.displayName)\(path)"
         }
         guard let request = URLRequest.requestForOAuth(with: baseURL, path:path, parameter:parameter, method:"GET", token:token)
             else { throw ReddiftError.canNotCreateURLRequest as NSError }
