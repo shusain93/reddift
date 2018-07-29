@@ -115,7 +115,7 @@ public struct Comment: Thing, Created, Votable {
     /**
     example: false
     */
-    public let edited: Bool
+    public let edited: Int
     /**
     the CSS class of the author's flair.  subreddit specific
     example:
@@ -222,7 +222,7 @@ public struct Comment: Thing, Created, Votable {
         approvedBy = ""
         controversiality = 0
         body = ""
-        edited = false
+        edited = -1
         authorFlairCssClass = ""
         downs = 0
         bodyHtml = ""
@@ -307,7 +307,7 @@ public struct Comment: Thing, Created, Votable {
         approvedBy = data["approved_by"] as? String ?? ""
         controversiality = data["controversiality"] as? Int ?? 0
         body = data["body"] as? String ?? ""
-        edited = data["edited"] as? Bool ?? false
+        edited = data["edited"] as? Int ?? -1
         authorFlairCssClass = data["author_flair_css_class"] as? String ?? ""
         downs = data["downs"] as? Int ?? 0
         let tempBodyHtml = data["body_html"] as? String ?? ""
