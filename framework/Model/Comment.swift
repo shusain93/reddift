@@ -184,7 +184,7 @@ public struct Comment: Thing, Created, Votable {
 	public var  new:Bool
 	
 	/**
-	if the message is a comment, then the permalink to the comment with ?context=3 appended to the end, otherwise an empty string
+	the permalink/context of the given comment. Reddit provides this as the context value for messages and as the permalink value for regular comments
 	example:
 	*/
 	public let  context:String
@@ -336,7 +336,15 @@ public struct Comment: Thing, Created, Votable {
         stickied = data["stickied"] as? Bool ?? false
 		linkTitle = data["link_title"] as? String ?? ""
 		new = data["new"] as? Bool ?? false
-		context = data["context"] as? String ?? ""
+	
+	if let contextString = data["context"] as? String {
+		context = contextString
+	}else if let contextString = data["permalink"] as? String {
+		context = contextString
+	}else {
+		context = ""
+	}
+	    
         if let temp = data["replies"] as? JSONDictionary {
             if let obj = Parser.redditAny(from: temp) as? Listing {
                 replies = obj
