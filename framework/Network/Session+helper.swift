@@ -178,6 +178,35 @@ func json2Comment(from json: JSONAny) -> Result<Comment> {
 	return Result(error: ReddiftError.commentJsonObjectIsMalformed as NSError)
 }
 
+/// Decode a single message response (generally yilded by sending a PM)
+/// {"json":{"errors":[],"data":{"things":[{"kind":"t4","data":{"num_comments":null,"context":"","body_html":"<!-- SC_OFF --><div class=\"md\"><p>Dheh</p></div><!-- SC_ON -->","first_message":777549834,"likes":null,"replies":"","created_utc":1533844549,"new":false,"score":0,"subject":"re: Sns","parent_id":"t4_xxxxxx","subreddit_name_prefixed":null,"name":"t4_xxxxxx","body":"Dheh","id":"xxxxxx","was_comment":false,"distinguished":null,"first_message_name":"t4_xxxxxx","subreddit":null,"dest":"aaaa","author":"aaaa","created":1533873349}}]}}}
+/// - Parameter json: JSON object
+/// - Returns: Result<Message>
+func json2Message(from json: JSONAny) -> Result<Message> {
+	if let json = json as? JSONDictionary, let j = json["json"] as? JSONDictionary, let data = j["data"] as? JSONDictionary, let things = data["things"] as? JSONArray {
+		// No error?
+		if things.count == 1 {
+			for thing in things {
+				if let thing = thing as? JSONDictionary {
+					let obj: Any? = Parser.redditAny(from: thing)
+					if let comment = obj as? Message {
+						return Result(value: comment)
+					}
+				}
+			}
+		}
+	} else if let json = json as? JSONDictionary, let j = json["json"] as? JSONDictionary, let errors = j["errors"] as? JSONArray {
+		// Error happened.
+		for obj in errors {
+			if let errorStrings = obj as? [String] {
+				print(errorStrings)
+				return Result(error: ReddiftError.commentJsonObjectIsMalformed as NSError)
+			}
+		}
+	}
+	return Result(error: ReddiftError.commentJsonObjectIsMalformed as NSError)
+}
+
 // MARK: RedditAny -> Objects
 
 func redditAny2Object<T>(from redditAny: RedditAny) -> Result<T> {
