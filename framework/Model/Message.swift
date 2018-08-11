@@ -89,7 +89,7 @@ public struct Message: Thing, Created {
     unread?  not sure
     example: false
     */
-    public let  new: Bool
+    public var  new: Bool
     /**
     
     example: admin
