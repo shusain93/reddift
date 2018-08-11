@@ -178,34 +178,45 @@ extension Session {
     
     /**
     Compose new message to specified user.
-    - parameter to: Account object of user to who you want to send a message.
+    - parameter to: a full subreddit name (/r/subreddit) or a full username (/u/usererr)
     - parameter subject: A string no longer than 100 characters
     - parameter text: Raw markdown text
-    - parameter fromSubreddit: Subreddit name?
+    - parameter fromSubreddit: The subreddit to send the message as NOT FULLY QUALIFIED (ex: askreddit). If
     - parameter captcha: The user's response to the CAPTCHA challenge
     - parameter captchaIden: The identifier of the CAPTCHA challenge
     - parameter completion: The completion handler to call when the load request is complete.
     - returns: Data task which requests search to reddit.com.
+     
+     on success:
+     ▿ Result<Any>
+        ▿ success : 1 element
+            ▿ 0 : 2 elements
+                - key : json
+                ▿ value : 1 element
+                    ▿ 0 : 2 elements
+                        - key : errors
+                        - value : 0 elements
      */
     @discardableResult
-    public func composeMessage(_ to: Account, subject: String, text: String, fromSubreddit: Subreddit, captcha: String, captchaIden: String, completion: @escaping (Result<JSONAny>) -> Void) throws -> URLSessionDataTask {
-        let parameter = [
+    public func composeMessage(_ to: String, subject: String, text: String, fromSubreddit: String?, captcha: String, captchaIden: String, completion: @escaping (Result<JSONAny>) -> Void) throws -> URLSessionDataTask {
+        var parameter = [
             "api_type": "json",
             "captcha": captcha,
             "iden": captchaIden,
-            "from_sr": fromSubreddit.displayName,
             "text": text,
             "subject": subject,
-            "to": to.id
+            "to": to
         ]
-        guard let request = URLRequest.requestForOAuth(with: baseURL, path:"/api/submit", parameter:parameter, method:"POST", token:token)
+        
+        if let fromSubreddit = fromSubreddit {
+            parameter["from_sr"] = fromSubreddit
+        }
+        guard let request = URLRequest.requestForOAuth(with: baseURL, path:"/api/compose", parameter:parameter, method:"POST", token:token)
             else { throw ReddiftError.canNotCreateURLRequest as NSError }
         let closure = {(data: Data?, response: URLResponse?, error: NSError?) -> Result<JSONAny> in
             return Result(from: Response(data: data, urlResponse: response), optional:error)
                 .flatMap(response2Data)
                 .flatMap(data2Json)
-                .flatMap(json2RedditAny)
-                .flatMap(redditAny2Object)
         }
         return executeTask(request, handleResponse: closure, completion: completion)
     }
