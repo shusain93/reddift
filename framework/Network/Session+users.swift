@@ -308,7 +308,7 @@ extension Session {
      */
     @discardableResult
     public func getUserProfile(_ username: String, completion: @escaping (Result<Account>) -> Void) throws -> URLSessionDataTask {
-        guard let request = URLRequest.requestForOAuth(with: baseURL, path:"/user/\(username)/about", method:"GET", token:token)
+        guard let request = URLRequest.requestForOAuth(with: baseURL, path:"/user/\(username)/about.json", method:"GET", token:token)
             else { throw ReddiftError.canNotCreateURLRequest as NSError }
         let closure = {(data: Data?, response: URLResponse?, error: NSError?) -> Result<Account> in
             return Result(from: Response(data: data, urlResponse: response), optional:error)
