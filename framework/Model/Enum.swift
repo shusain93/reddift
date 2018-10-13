@@ -318,21 +318,21 @@ public enum UserContent {
 	var path: String {
 		switch self {
 		case .overview:
-			return "/overview"
+			return "/overview.json"
 		case .submitted:
-			return "/submitted"
+			return "/submitted.json"
 		case .comments:
-			return "/comments"
+			return "/comments.json"
 		case .liked:
-			return "/liked"
+			return "/liked.json"
 		case .disliked:
-			return "/disliked"
+			return "/disliked.json"
 		case .hidden:
-			return "/hidden"
+			return "/hidden.json"
 		case .saved:
-			return "/saved"
+			return "/saved.json"
 		case .gilded:
-			return "/glided"
+			return "/glided.json"
 		}
 	}
 }
